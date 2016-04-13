@@ -25,6 +25,7 @@ public:
 	void clear();
 	char* c_str();
 	int GetnArgs();
+	char* toLower();
 
 
 	bool String::operator==(const char* c_str) const {

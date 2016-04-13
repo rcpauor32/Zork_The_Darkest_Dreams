@@ -2,6 +2,7 @@
 
 int GetRoomNum(String room) {
 	int room_num;
+
 	if (room == "Secret Room")
 		room_num = 0;
 	if (room == "Surgery Room")

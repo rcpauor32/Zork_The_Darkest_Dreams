@@ -17,11 +17,6 @@ public:
 
 public:
 	Entity(){};
-	Entity(String n, String desc, entity_type t) {
-		name = n;
-		description = desc;
-		type = t;
-	}
 	virtual ~Entity(){};
 	void Look();
 };

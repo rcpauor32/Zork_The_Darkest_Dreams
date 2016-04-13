@@ -1,4 +1,5 @@
 #include "my_string.h"
+#include <ctype.h>
 #include <assert.h>
 
 String::String(unsigned int mem) {
@@ -53,4 +54,13 @@ int String::GetnArgs() {
 	}
 
 	return n_args;
+}
+
+char* String::toLower() {
+	char* ret = new char[capacity];
+	for (int i = 0; i < capacity; i++) {
+		if (string[i] > 'A' && string[i] < 'Z')
+			ret[i] = string[i] + 32;
+	}
+	return ret;
 }

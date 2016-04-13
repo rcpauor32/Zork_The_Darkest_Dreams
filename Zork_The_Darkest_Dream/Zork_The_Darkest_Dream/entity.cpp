@@ -2,5 +2,5 @@
 #include <stdio.h>
 
 void Entity::Look() {
-	printf("\n\nYou look to the %s\n\n %s", name, description);
+	printf("\n\n - %s\n\n %s", this->name.c_str(), this->description.c_str());
 }

@@ -73,6 +73,7 @@
     <ClCompile Include="world.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="dynarray.h" />
     <ClInclude Include="entity.h" />
     <ClInclude Include="exit.h" />
     <ClInclude Include="globals.h" />

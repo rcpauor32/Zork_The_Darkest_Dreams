@@ -13,7 +13,7 @@ public:
 		current_room = "Surgery";
 		type = PLAYER;
 	}
-	Player(String n, String desc, String room = "Surgery") {
+	Player(String n, String desc, String room = "Surgery Room") {
 		name = n;
 		description = desc;
 		current_room = room;
