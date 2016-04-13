@@ -25,6 +25,7 @@ public:
 	void clear();
 	char* c_str();
 	int GetnArgs();
+	char* GetChoosenArg(int n_arg);
 	char* toLower();
 
 

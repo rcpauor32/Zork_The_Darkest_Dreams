@@ -2,6 +2,7 @@
 #include "world.h"
 #include "player.h"
 #include "exit.h"
+#include <stdlib.h>
 
 void Player::Go(String dir) {
 	bool success = false;
@@ -13,6 +14,7 @@ void Player::Go(String dir) {
 				printf("\nThis door is closed, try opening it");
 			else {
 				current_room = world.exits[i]->prevroom;
+				system("CLS");
 				world.rooms[GetRoomNum(current_room)]->Look();
 			}
 		}
@@ -22,6 +24,7 @@ void Player::Go(String dir) {
 				printf("\nThis door is closed, try opening it");
 			else {
 				current_room = world.exits[i]->nextroom;
+				system("CLS"); 
 				world.rooms[GetRoomNum(current_room)]->Look();
 			}
 		}

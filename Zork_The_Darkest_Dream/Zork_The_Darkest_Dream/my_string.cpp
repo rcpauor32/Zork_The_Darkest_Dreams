@@ -42,7 +42,6 @@ char* String::c_str() {
 }
 
 String::~String() {
-	delete[] string;
 };
 
 int String::GetnArgs() {
@@ -62,5 +61,31 @@ char* String::toLower() {
 		if (string[i] > 'A' && string[i] < 'Z')
 			ret[i] = string[i] + 32;
 	}
+	return ret;
+}
+
+char* String::GetChoosenArg(int n_arg) {
+	char* ret = new char[capacity];
+	int i = 0;
+	int k = 0;
+	if (n_arg <= 1)
+		return string;
+	else {
+		n_arg--;
+
+		while(i < strlen(string) && n_arg > 0) {
+			if (string[i] == ' ')
+				n_arg--;
+			i++;
+		}
+
+		while (string[i] != ' ' || i < capacity) {
+			ret[k] = string[i];
+			i++;
+			k++;
+		}
+		ret[i] = '\0';
+	}
+
 	return ret;
 }
