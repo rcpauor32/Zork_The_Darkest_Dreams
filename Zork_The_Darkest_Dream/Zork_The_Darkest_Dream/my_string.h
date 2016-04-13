@@ -12,6 +12,7 @@ private:
 public:
 	uint capacity;
 
+	String(){};
 	String(unsigned int mem);
 	String(char* c_str1);
 	String(String &str);
@@ -25,7 +26,6 @@ public:
 	char* c_str();
 	int GetnArgs();
 
-	String(){};
 
 	bool String::operator==(const char* c_str) const {
 		return strcmp(this->string, c_str) == 0;

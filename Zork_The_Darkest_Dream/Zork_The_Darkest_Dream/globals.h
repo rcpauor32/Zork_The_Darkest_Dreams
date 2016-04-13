@@ -31,5 +31,4 @@ String libtodarkdesc	= "exit__libdesc";
 // Player descrpition;
 String playerdesc		= "player__desc";
 
-
 #endif

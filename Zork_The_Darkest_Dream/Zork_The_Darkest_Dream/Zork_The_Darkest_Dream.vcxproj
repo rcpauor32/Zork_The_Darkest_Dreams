@@ -69,6 +69,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="my_string.cpp" />
     <ClCompile Include="player.cpp" />
+    <ClCompile Include="room.cpp" />
     <ClCompile Include="world.cpp" />
   </ItemGroup>
   <ItemGroup>

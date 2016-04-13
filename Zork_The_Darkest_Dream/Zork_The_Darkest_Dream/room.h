@@ -3,6 +3,8 @@
 
 #include "entity.h"
 
+#define NUM_ROOMS 11
+
 class Room : public Entity {
 public:
 	Room() {}
@@ -14,5 +16,7 @@ public:
 
 	~Room(){}
 };
+
+int GetRoomNum(String room);
 
 #endif

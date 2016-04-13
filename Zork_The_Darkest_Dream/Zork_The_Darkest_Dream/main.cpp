@@ -1,11 +1,11 @@
 #include "world.h"
+#include "player.h"
 #include <stdio.h>
 
+World world;
 
 int main() {
 
-	World world;
-	
 	getchar();
 
 	return 0;
