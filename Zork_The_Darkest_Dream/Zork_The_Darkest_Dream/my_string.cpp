@@ -46,6 +46,11 @@ String::~String() {
 
 int String::GetnArgs() {
 	int n_args = 1;
+
+	if (strlen(string) == 0) {
+		return 0;
+	}
+
 	while (*(string++) == ' ');
 	for (int i = 0; i < strlen(string); i++){
 		if (string[i] == ' ')
@@ -66,8 +71,8 @@ char* String::toLower() {
 
 char* String::GetChoosenArg(int n_arg) {
 	char* ret = new char[capacity];
-	int i = 0;
-	int k = 0;
+	uint i = 0;
+	uint k = 0;
 	if (n_arg <= 1)
 		return string;
 	else {

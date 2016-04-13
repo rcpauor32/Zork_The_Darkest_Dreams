@@ -3,6 +3,7 @@
 #include "exit.h"
 #include "player.h"
 #include "globals.h"
+#include <stdio.h>
 
 World::World() {
 
@@ -68,4 +69,15 @@ World::~World() {
 	for (int i = 0; i < NUM_ENTITIES; i++) {
 		delete entities[i];
 	}
+}
+
+bool World::Play() {
+	String input;
+	printf("\n\n--> ");
+	scanf_s("%s", &input, 50);
+
+	switch (input.GetnArgs()) {
+	case 1:
+	}
+
 }

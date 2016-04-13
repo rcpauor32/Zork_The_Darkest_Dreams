@@ -21,6 +21,7 @@ public:
 public:
 	World();
 	~World();
+	bool Play();
 	
 };
 
