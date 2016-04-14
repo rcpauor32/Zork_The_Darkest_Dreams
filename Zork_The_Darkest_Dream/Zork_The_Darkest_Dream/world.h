@@ -5,6 +5,8 @@
 
 #include "exit.h"
 #include "room.h"
+#include "dynarray.h"
+
 
 class Entity;
 class Room;

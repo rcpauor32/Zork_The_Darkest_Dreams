@@ -107,9 +107,7 @@ bool World::Play() {
 		break;
 
 	case 2:
-		char* a = input.GetChoosenArg(1);
-		if (a == "go") { // a is = "go" but doesnt
-			printf("hello");
+		if (input.GetChoosenArg(1) == "go") {
 			if (input.GetChoosenArg(2) == "n\n" || input.GetChoosenArg(2) == "north\n") {
 				player->Go("north");
 			}
@@ -131,6 +129,9 @@ bool World::Play() {
 		}
 		if (input.GetChoosenArg(1) == "look") {
 			for (int i = 0; i < NUM_ENTITIES; i++) {
+				if (input.GetChoosenArg(2) == entities[i]->name.c_str()) {
+					entities[i]->Look();
+				}
 			}
 		}
 		break;

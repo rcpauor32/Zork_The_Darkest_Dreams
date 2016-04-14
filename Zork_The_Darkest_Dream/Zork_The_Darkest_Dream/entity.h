@@ -2,6 +2,8 @@
 #define	__ENTITY_H__
 
 #include "my_string.h"
+#include "dynarray.h"
+
 
 enum entity_type {
 	ROOM = 0,
@@ -14,6 +16,7 @@ public:
 	String name;
 	String description;
 	entity_type type;
+	DynArray <Entity*>inside;
 
 public:
 	Entity(){};

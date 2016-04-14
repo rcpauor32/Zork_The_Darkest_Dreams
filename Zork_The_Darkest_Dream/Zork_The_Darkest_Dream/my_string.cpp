@@ -45,18 +45,19 @@ String::~String() {
 };
 
 int String::GetnArgs() {
-	int n_args = 1;
-	int n_char = 0;
-	
-	while (string[n_char] != ' ') {
-		n_char++;
-	}
+	uint n_args = 1;
+	uint n_char;
+	n_char = 0;
+	if (string != nullptr) {
+		while (string[n_char] != ' ' && string[n_char] != '\0') {
+			n_char++;
+		}
 
-	for (int i = n_char; i < strlen(string); i++){
-		if (string[i] == ' ')
-			n_args++;
+		for (int i = n_char; i < strlen(string); i++){
+			if (string[i] == ' ')
+				n_args++;
+		}
 	}
-
 	return n_args;
 }
 
