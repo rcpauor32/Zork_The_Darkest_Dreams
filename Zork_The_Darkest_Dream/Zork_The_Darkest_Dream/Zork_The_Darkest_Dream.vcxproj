@@ -76,7 +76,6 @@
     <ClInclude Include="dynarray.h" />
     <ClInclude Include="entity.h" />
     <ClInclude Include="exit.h" />
-    <ClInclude Include="globals.h" />
     <ClInclude Include="my_string.h" />
     <ClInclude Include="player.h" />
     <ClInclude Include="room.h" />

@@ -57,6 +57,21 @@ public:
 		return *this;
 	}
 
+	const String& String::operator-(char* c_str) {
+		char* aux = new char[capacity];
+		int k = 0;
+		for (int i = 0; i < capacity; i++) {
+			if (string[i] != c_str[k]) {
+				aux[i] = string[i];
+			}
+			else {
+				i--;
+				k++;
+			}
+		}
+		return aux;
+	}
+
 };
 
 #endif

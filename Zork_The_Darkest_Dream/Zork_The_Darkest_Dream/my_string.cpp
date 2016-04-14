@@ -46,13 +46,13 @@ String::~String() {
 
 int String::GetnArgs() {
 	int n_args = 1;
-
-	if (strlen(string) == 0) {
-		return 0;
+	int n_char = 0;
+	
+	while (string[n_char] != ' ') {
+		n_char++;
 	}
 
-	while (*(string++) == ' ');
-	for (int i = 0; i < strlen(string); i++){
+	for (int i = n_char; i < strlen(string); i++){
 		if (string[i] == ' ')
 			n_args++;
 	}
@@ -73,24 +73,30 @@ char* String::GetChoosenArg(int n_arg) {
 	char* ret = new char[capacity];
 	uint i = 0;
 	uint k = 0;
-	if (n_arg <= 1)
-		return string;
-	else {
-		n_arg--;
+	uint n_ch = 0;
+	n_arg--;
+	if (n_arg < 1) {
+		for (n_ch = 0; string[n_ch - 1] != ' ' && string[n_ch] != '\0'; n_ch++) {
+			ret[n_ch] = string[n_ch];
+		}
+		ret[n_ch - 1] = '\0';
+	}
 
+	else {
 		while(i < strlen(string) && n_arg > 0) {
 			if (string[i] == ' ')
 				n_arg--;
 			i++;
 		}
 
-		while (string[i] != ' ' || i < capacity) {
+		while (string[i] != '\0' && string[i] != ' ' && i < capacity) {
 			ret[k] = string[i];
 			i++;
 			k++;
 		}
-		ret[i] = '\0';
+		ret[k] = '\0';
 	}
+	
 
 	return ret;
 }
