@@ -34,6 +34,55 @@ World::World() {
 	//Passing Player
 	player = new Player("Hero", "plyer_desc");
 
+	items.push_back(new Item("Teddy Bear", "Teddy desc"));
+	items.push_back(new Item("Rusty Key", "Rusty Key desc"));
+	items.push_back(new Item("Blue Marble", "BM desc"));
+	items.push_back(new Item("Red Marble", "RM desc"));
+	items.push_back(new Item("Green Marble", "GM desc"));
+	items.push_back(new Item("Stone Skull", "SS desc"));
+	items.push_back(new Item("Stone Heart", "SH desc"));
+	items.push_back(new Item("Blue Gem", "BG desc"));
+	items.push_back(new Item("Red Gem", "RG desc"));
+	items.push_back(new Item("Lamp", "Lamp desc"));
+	items.push_back(new Item("Newspaper Sheet", "NS desc"));
+	items.push_back(new Item("Child Notebook", "CN desc"));
+	
+	//Passing all exits to each room
+	rooms[Secret]->inside.push_back(exits[SecretRoomDoor]);
+	rooms[Surgery]->inside.push_back(exits[SecretRoomDoor]);
+	rooms[Surgery]->inside.push_back(exits[SurgeryDoor]);
+	rooms[UpAngel]->inside.push_back(exits[SurgeryDoor]);
+	rooms[UpAngel]->inside.push_back(exits[StudioDoor]);
+	rooms[UpAngel]->inside.push_back(exits[Stairway]);
+	rooms[DwAngel]->inside.push_back(exits[Stairway]);
+	rooms[DwAngel]->inside.push_back(exits[StoneDoor]);
+	rooms[DwAngel]->inside.push_back(exits[DoubleDoor]);
+	rooms[DwAngel]->inside.push_back(exits[WoodenDoor]);
+	rooms[Stone]->inside.push_back(exits[StoneDoor]);
+	rooms[Stone]->inside.push_back(exits[MirrorDoor]);
+	rooms[Mirror]->inside.push_back(exits[MirrorDoor]);
+	rooms[Waiting]->inside.push_back(exits[DoubleDoor]);
+	rooms[Waiting]->inside.push_back(exits[HospitalDoor]);
+	rooms[Reception]->inside.push_back(exits[HospitalDoor]);
+	rooms[Library]->inside.push_back(exits[WoodenDoor]);
+	rooms[Library]->inside.push_back(exits[SecretPassage]);
+	rooms[Darkness]->inside.push_back(exits[SecretPassage]);
+
+	//Passing items to each room
+	rooms[Secret]->inside.push_back(items[TeddyB]);
+	rooms[Surgery]->inside.push_back(items[RustyK]);
+	rooms[Studio]->inside.push_back(items[SSkull]);
+	rooms[DwAngel]->inside.push_back(items[SHeart]);
+	rooms[Stone]->inside.push_back(items[RMarble]);
+	rooms[Mirror]->inside.push_back(items[BGem]);
+	rooms[Mirror]->inside.push_back(items[Lamp]);
+	rooms[Library]->inside.push_back(items[Newspaper]);
+	rooms[Library]->inside.push_back(items[Notebook]);
+	rooms[Darkness]->inside.push_back(items[BMarble]);
+	rooms[Darkness]->inside.push_back(items[RGem]);
+	rooms[Waiting]->inside.push_back(items[GMarble]);
+
+
 	//Passing all to entities[]
 	entities.push_back(rooms[0]);
 	entities.push_back(rooms[1]);
@@ -56,6 +105,18 @@ World::World() {
 	entities.push_back(exits[7]);
 	entities.push_back(exits[8]);
 	entities.push_back(exits[9]);
+ 	entities.push_back(items[0]);
+	entities.push_back(items[1]);
+	entities.push_back(items[2]);
+	entities.push_back(items[3]);
+	entities.push_back(items[4]);
+	entities.push_back(items[5]);
+	entities.push_back(items[6]);
+	entities.push_back(items[7]);
+	entities.push_back(items[8]);
+	entities.push_back(items[9]);
+	entities.push_back(items[10]);
+	entities.push_back(items[11]);
 	entities.push_back(player);
 	
 
@@ -130,6 +191,8 @@ bool World::Play() {
 					entities[i]->Look();
 				}
 			}
+		}
+		if (input.GetChoosenArg(1) == "close") {
 		}
 		break;
 	}

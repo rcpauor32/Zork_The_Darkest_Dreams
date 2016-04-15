@@ -5,6 +5,7 @@
 
 #include "exit.h"
 #include "room.h"
+#include "items.h"
 #include "dynarray.h"
 
 
@@ -18,6 +19,7 @@ public:
 	DynArray<Entity*>entities;
 	DynArray<Room*>rooms;
 	DynArray<Exit*>exits;
+	DynArray<Item*>items;
 	Player* player;
 	
 public:
@@ -28,5 +30,47 @@ public:
 };
 
 extern World world;
+
+enum room_names{
+	Secret = 0,
+	Surgery,
+	UpAngel,
+	Studio,
+	DwAngel,
+	Stone,
+	Mirror,
+	Waiting,
+	Reception,
+	Library,
+	Darkness
+};
+
+enum exit_names{
+	SecretRoomDoor = 0,
+	SurgeryDoor,
+	StudioDoor,
+	Stairway,
+	StoneDoor,
+	MirrorDoor,
+	DoubleDoor,
+	HospitalDoor,
+	WoodenDoor,
+	SecretPassage
+};
+
+enum item_names {
+	TeddyB = 0,
+	RustyK,
+	BMarble,
+	RMarble,
+	GMarble,
+	SSkull,
+	SHeart,
+	BGem,
+	RGem,
+	Lamp,
+	Newspaper,
+	Notebook
+};
 
 #endif
