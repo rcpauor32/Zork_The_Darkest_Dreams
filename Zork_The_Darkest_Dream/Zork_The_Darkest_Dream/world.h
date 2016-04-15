@@ -15,9 +15,9 @@ class Player;
 
 class World {
 public:
-	Entity* entities[NUM_ENTITIES];
-	Room* rooms[NUM_ROOMS];
-	Exit* exits[NUM_EXITS];
+	DynArray<Entity*>entities;
+	DynArray<Room*>rooms;
+	DynArray<Exit*>exits;
 	Player* player;
 	
 public:

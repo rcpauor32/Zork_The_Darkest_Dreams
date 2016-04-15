@@ -8,7 +8,8 @@
 enum entity_type {
 	ROOM = 0,
 	EXIT,
-	PLAYER
+	PLAYER,
+	ITEM
 };
 
 class Entity {

@@ -70,17 +70,17 @@ char* String::toLower() {
 	return ret;
 }
 
-char* String::GetChoosenArg(int n_arg) {
-	char* ret = new char[capacity];
+String String::GetChoosenArg(int n_arg) {
+	String ret(capacity);
 	uint i = 0;
 	uint k = 0;
 	uint n_ch = 0;
 	n_arg--;
 	if (n_arg < 1) {
-		for (n_ch = 0; string[n_ch - 1] != ' ' && string[n_ch] != '\0'; n_ch++) {
-			ret[n_ch] = string[n_ch];
+		for (n_ch = 0; string[n_ch] != ' ' && string[n_ch] != '\0'; n_ch++) {
+			ret.string[n_ch] = string[n_ch];
 		}
-		ret[n_ch - 1] = '\0';
+		ret.string[n_ch] = '\0';
 	}
 
 	else {
@@ -91,11 +91,11 @@ char* String::GetChoosenArg(int n_arg) {
 		}
 
 		while (string[i] != '\0' && string[i] != ' ' && i < capacity) {
-			ret[k] = string[i];
+			ret.string[k] = string[i];
 			i++;
 			k++;
 		}
-		ret[k] = '\0';
+		ret.string[k] = '\0';
 	}
 	
 

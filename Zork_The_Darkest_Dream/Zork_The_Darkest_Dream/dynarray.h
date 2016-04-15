@@ -44,7 +44,10 @@ public:
 
 	}
 
-	virtual ~DynArray(){}
+	virtual ~DynArray(){
+		if (buffer != nullptr)
+			delete[] buffer;
+	}
 
 public:
 	T* GetBuffer() const {
@@ -87,11 +90,24 @@ public:
 
 
 	}
-	int operator[](T value)const{
+	void pop_back() const {
+		T* newbuffer = new T[capacity - 1];
+		for (int i = 0; i < num_elements - 1; i++) {
+			newbuffer[i] = buffer[i];
+		}
+		delete[] buffer;
+		capacity--;
+		buffer = newbuffer;
+	}
+
+	uint n_size() const {
+		return num_elements;
+	}
+	T& operator[](int value)const{
 		return buffer[value];
 
 	}
-	int operator[](T value){
+	T& operator[](int value){
 		return buffer[value];
 	}
 	void operator=(T value){
