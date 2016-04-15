@@ -16,6 +16,7 @@ class Entity {
 public:
 	String name;
 	String description;
+	String tag;
 	entity_type type;
 	DynArray <Entity*>inside;
 

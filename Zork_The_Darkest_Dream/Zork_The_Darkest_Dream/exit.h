@@ -16,7 +16,7 @@ public:
 
 public:
 	Exit(){}
-	Exit(String nextd, String prevd, String nextr, String prevr, String n, String desc, bool state = true) {
+	Exit(String nextd, String prevd, String nextr, String prevr, String n, String desc, String t, bool state = true) {
 		nextdir = nextd;
 		prevdir = prevd;
 		nextroom = nextr;
@@ -24,12 +24,13 @@ public:
 		name = n;
 		description = desc;
 		open = state;
+		tag = t;
 		type = EXIT;
 	}
 
 	~Exit(){};
 
-	void OpenClose(String action, String dir);
+	void OpenClose(String action);
 };
 
 #endif

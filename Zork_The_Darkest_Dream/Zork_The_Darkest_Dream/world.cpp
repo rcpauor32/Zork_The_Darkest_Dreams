@@ -1,8 +1,10 @@
 #include "world.h"
 #include "room.h"
 #include "exit.h"
+#include "items.h"
 #include "player.h"
 #include <stdio.h>
+#include <stdlib.h>
 
 World::World() {
 
@@ -20,32 +22,32 @@ World::World() {
 	rooms.push_back(new Room("Darkness", "room__darkdesc"));
 
 	//Passing all Exits
-	exits.push_back(new Exit("south", "north", "Surgery Room", "Secret Room", "Wall Crack", "exit__secretdesc"));
-	exits.push_back(new Exit("south", "north", "Upstairs Angel Room", "Surgery Room", "Surgery Door", "exit__upa", false));
-	exits.push_back(new Exit("west", "east", "Studio", "Upstairs Angel Room", "Decorated Wooden Door", "exit__1", false));
-	exits.push_back(new Exit("down", "up", "Downstairs Angel Room", "Upstairs Angel Room", "Huge Stairway", "exit__lol"));
-	exits.push_back(new Exit("west", "east", "Stone Room", "Downstairs Angel Room", "Stone Door", "exit_jj"));
-	exits.push_back(new Exit("south", "north", "Stone Room", "Mirror Room", "Glass Door", "exit__"));
-	exits.push_back(new Exit("south", "north", "Waiting Room", "Downstairs Angel Room", "White Double Door", "exit_desc4"));
-	exits.push_back(new Exit("south", "north", "Reception", "Waiting Room", "Hospital Door", "exit__mmm"));
-	exits.push_back(new Exit("east", "west", "Library", "Downstairs Angel Room", "Wooden Door","exit__345235"));
-	exits.push_back(new Exit("south", "north", "Darkness", "Library", "Dark Secret Passage", "exit_dar"));
+	exits.push_back(new Exit("south", "north", "Surgery Room", "Secret Room", "Wallcrack", "exit__secretdesc", "wallcrack"));
+	exits.push_back(new Exit("south", "north", "Upstairs Angel Room", "Surgery Room", "Surgery Door", "exit__upa", "door",  false));
+	exits.push_back(new Exit("west", "east", "Studio", "Upstairs Angel Room", "Decorated Portal", "exit__1", "portal" ,  false));
+	exits.push_back(new Exit("down", "up", "Downstairs Angel Room", "Upstairs Angel Room", "Huge Stairway", "stairway", "exit__lol"));
+	exits.push_back(new Exit("west", "east", "Stone Room", "Downstairs Angel Room", "Stone Gate", "exit_jj", "gate"));
+	exits.push_back(new Exit("south", "north", "Stone Room", "Mirror Room", "Glass Door", "exit__", "door"));
+	exits.push_back(new Exit("south", "north", "Waiting Room", "Downstairs Angel Room", "White Double Door", "exit_desc4", "portal"));
+	exits.push_back(new Exit("south", "north", "Reception", "Waiting Room", "Hospital Gate", "exit__mmm", "gate"));
+	exits.push_back(new Exit("east", "west", "Library", "Downstairs Angel Room", "Wooden Door","exit__345235", "door"));
+	exits.push_back(new Exit("south", "north", "Darkness", "Library", "Dark Secret Passage", "exit_dar", "passage"));
 
 	//Passing Player
 	player = new Player("Hero", "plyer_desc");
 
-	items.push_back(new Item("Teddy Bear", "Teddy desc"));
-	items.push_back(new Item("Rusty Key", "Rusty Key desc"));
-	items.push_back(new Item("Blue Marble", "BM desc"));
-	items.push_back(new Item("Red Marble", "RM desc"));
-	items.push_back(new Item("Green Marble", "GM desc"));
-	items.push_back(new Item("Stone Skull", "SS desc"));
-	items.push_back(new Item("Stone Heart", "SH desc"));
-	items.push_back(new Item("Blue Gem", "BG desc"));
-	items.push_back(new Item("Red Gem", "RG desc"));
-	items.push_back(new Item("Lamp", "Lamp desc"));
-	items.push_back(new Item("Newspaper Sheet", "NS desc"));
-	items.push_back(new Item("Child Notebook", "CN desc"));
+	items.push_back(new Item("Teddy Bear", "Teddy desc", "bear"));
+	items.push_back(new Item("Rusty Key", "Rusty Key desc", "key"));
+	items.push_back(new Item("Blue Marble", "BM desc", "marble"));
+	items.push_back(new Item("Red Marble", "RM desc", "marble"));
+	items.push_back(new Item("Green Marble", "GM desc", "marble"));
+	items.push_back(new Item("Stone Skull", "SS desc", "skull"));
+	items.push_back(new Item("Stone Heart", "SH desc", "heart"));
+	items.push_back(new Item("Blue Gem", "BG desc", "gem"));
+	items.push_back(new Item("Red Gem", "RG desc", "gem"));
+	items.push_back(new Item("Lamp", "Lamp desc", "lamp"));
+	items.push_back(new Item("Newspaper Sheet", "NS desc", "newspaper"));
+	items.push_back(new Item("Child Notebook", "CN desc", "notebook"));
 	
 	//Passing all exits to each room
 	rooms[Secret]->inside.push_back(exits[SecretRoomDoor]);
@@ -163,6 +165,10 @@ bool World::Play() {
 		else if (input == "q\n" || input == "quit\n") {
 			return false;
 		}
+		else if (input == "clear\n") {
+			system("CLS");
+			rooms[GetRoomNum(player->current_room)]->Look();
+		}
 		else
 			recognized = false;
 		break;
@@ -191,13 +197,78 @@ bool World::Play() {
 				printf("\nI do not recognize that direction");
 		}
 		else if (input.GetChoosenArg(1) == "look") {
-			for (int i = 0; i < NUM_ENTITIES; i++) {
-				if (input.GetChoosenArg(2) == entities[i]->name.c_str()) {
-					entities[i]->Look();
+			bool looked = false;
+			if (input.GetChoosenArg(2) == "north" || input.GetChoosenArg(2) == "south" || input.GetChoosenArg(2) == "west" || input.GetChoosenArg(2) == "east" || input.GetChoosenArg(2) == "up" || input.GetChoosenArg(2) == "down"){
+				for (int i = 0; i < NUM_EXITS; i++) {
+					if (player->current_room == world.exits[i]->nextroom && world.exits[i]->prevdir == input.GetChoosenArg(2)) {
+						exits[i]->Look();
+						looked = true;
+					} 
+					else if (player->current_room == world.exits[i]->prevroom && world.exits[i]->nextdir == input.GetChoosenArg(2)) {
+						exits[i]->Look();
+						looked = true;
+					}
+				}
+				if (looked == false) {
+					printf("There's no exit to that direction.");
+					looked = true;
 				}
 			}
+			else if (input.GetChoosenArg(2) == "room") {
+				rooms[GetRoomNum(player->current_room)]->Look();
+				looked = true;
+			}
+			else if (input.GetChoosenArg(2) == "player") {
+				player->Look();
+				looked = true;
+			}
+			else 
+				for (int i = 0; i < rooms[GetRoomNum(player->current_room)]->inside.n_size(); i++) {
+				if (input.GetChoosenArg(2) == rooms[GetRoomNum(player->current_room)]->inside[i]->tag) {
+					rooms[GetRoomNum(player->current_room)]->inside[i]->Look();
+					looked = true;
+				}
+			}
+			if (looked == false)
+				printf("\nThere's no such thing in this room.");
 		}
-		else if (input.GetChoosenArg(1) == "close") {
+		else if (input.GetChoosenArg(1) == "close" || input.GetChoosenArg(1) == "open") {
+			bool success = false;
+			if (input.GetChoosenArg(2) == "north" || input.GetChoosenArg(2) == "south" || input.GetChoosenArg(2) == "west" || input.GetChoosenArg(2) == "east" || input.GetChoosenArg(2) == "up" || input.GetChoosenArg(2) == "down"){
+				for (int i = 0; i < NUM_EXITS; i++) {
+					if (player->current_room == world.exits[i]->nextroom && world.exits[i]->prevdir == input.GetChoosenArg(2)) {
+						if (exits[i]->open == true && input.GetChoosenArg(1) == "open") {
+							printf("\nThat door is already open.");
+							success = true;
+						}
+						else if (exits[i]->open == false && input.GetChoosenArg(1) == "close") {
+							printf("\nThat door is already closed.");
+							success = true;
+						}
+						else {
+							exits[i]->OpenClose(input.GetChoosenArg(1));
+							success = true;
+						}
+					}
+					else if (player->current_room == world.exits[i]->prevroom && world.exits[i]->nextdir == input.GetChoosenArg(2)) {
+						if (exits[i]->open == true && input.GetChoosenArg(1) == "open") {
+							printf("\nThat door is already open.");
+							success = true;
+						}
+						else if (exits[i]->open == false && input.GetChoosenArg(1) == "close") {
+							printf("\nThat door is already closed.");
+							success = true;
+						}
+						else {
+							exits[i]->OpenClose(input.GetChoosenArg(1));
+							success = true;
+						}
+					}
+				}
+				if (success == false) {
+					printf("There's no such door to that direction.");
+				}
+			}
 		}
 		else
 			recognized = false;
