@@ -77,7 +77,7 @@ String String::GetChoosenArg(int n_arg) {
 	uint n_ch = 0;
 	n_arg--;
 	if (n_arg < 1) {
-		for (n_ch = 0; string[n_ch] != ' ' && string[n_ch] != '\0'; n_ch++) {
+		for (n_ch = 0; string[n_ch] != ' ' && string[n_ch] != '\0' && string[n_ch] != '\n'; n_ch++) {
 			ret.string[n_ch] = string[n_ch];
 		}
 		ret.string[n_ch] = '\0';
@@ -90,7 +90,7 @@ String String::GetChoosenArg(int n_arg) {
 			i++;
 		}
 
-		while (string[i] != '\0' && string[i] != ' ' && i < capacity) {
+		while (string[i] != '\0' && string[i] != ' ' && string[i] != '\n' && i < capacity) {
 			ret.string[k] = string[i];
 			i++;
 			k++;

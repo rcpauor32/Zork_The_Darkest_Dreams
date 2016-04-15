@@ -131,6 +131,7 @@ World::~World() {
 bool World::Play() {
 	String input;
 	char play_input[50];
+	bool recognized = true;
 	printf("\n\n--> ");
 	fgets(play_input, 50, stdin);
 	
@@ -144,58 +145,68 @@ bool World::Play() {
 		if (input == "n\n" || input == "north\n") {
 			player->Go("north");
 		}
-		if (input == "s\n" || input == "south\n") {
+		else if (input == "s\n" || input == "south\n") {
 			player->Go("south");
 		}
-		if (input == "w\n" || input == "west\n") {
+		else if (input == "w\n" || input == "west\n") {
 			player->Go("west");
 		}
-		if (input == "e\n" || input == "east\n") {
+		else if (input == "e\n" || input == "east\n") {
 			player->Go("east");
 		}
-		if (input == "u\n" || input == "up\n") {
+		else if (input == "u\n" || input == "up\n") {
 			player->Go("up");
 		}
-		if (input == "d\n" || input == "down\n") {
+		else if (input == "d\n" || input == "down\n") {
 			player->Go("down");
 		}
-		if (input == "q\n" || input == "quit\n") {
+		else if (input == "q\n" || input == "quit\n") {
 			return false;
 		}
+		else
+			recognized = false;
 		break;
 
 	case 2:
 		if (input.GetChoosenArg(1) == "go") {
-			if (input.GetChoosenArg(2) == "n\n" || input.GetChoosenArg(2) == "north\n") {
+			if (input.GetChoosenArg(2) == "n" || input.GetChoosenArg(2) == "north") {
 				player->Go("north");
 			}
-			if (input.GetChoosenArg(2) == "s\n" || input.GetChoosenArg(2) == "south\n") {
+			else if (input.GetChoosenArg(2) == "s" || input.GetChoosenArg(2) == "south") {
 				player->Go("south");
 			}
-			if (input.GetChoosenArg(2) == "w\n" || input.GetChoosenArg(2) == "west\n") {
+			else if (input.GetChoosenArg(2) == "w" || input.GetChoosenArg(2) == "west") {
 				player->Go("west");
 			}
-			if (input.GetChoosenArg(2) == "e\n" || input.GetChoosenArg(2) == "east\n") {
+			else if (input.GetChoosenArg(2) == "e" || input.GetChoosenArg(2) == "east") {
 				player->Go("east");
 			}
-			if (input.GetChoosenArg(2) == "u\n" || input.GetChoosenArg(2) == "up\n") {
+			else if (input.GetChoosenArg(2) == "u" || input.GetChoosenArg(2) == "up") {
 				player->Go("up");
 			}
-			if (input.GetChoosenArg(2) == "d\n" || input.GetChoosenArg(2) == "down\n") {
+			else if (input.GetChoosenArg(2) == "d" || input.GetChoosenArg(2) == "down") {
 				player->Go("down");
 			}
+			else
+				printf("\nI do not recognize that direction");
 		}
-		if (input.GetChoosenArg(1) == "look") {
+		else if (input.GetChoosenArg(1) == "look") {
 			for (int i = 0; i < NUM_ENTITIES; i++) {
 				if (input.GetChoosenArg(2) == entities[i]->name.c_str()) {
 					entities[i]->Look();
 				}
 			}
 		}
-		if (input.GetChoosenArg(1) == "close") {
+		else if (input.GetChoosenArg(1) == "close") {
 		}
+		else
+			recognized = false;
 		break;
 	}
 	
+	if (recognized == false) {
+		printf("\nThere's no such command.");
+	}
+
 	return true;
 }
