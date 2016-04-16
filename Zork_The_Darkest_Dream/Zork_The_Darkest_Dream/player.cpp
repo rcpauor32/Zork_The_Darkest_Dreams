@@ -126,8 +126,8 @@ void Player::PutGet(String action, String object, String dest) {
 			if (inside[dest_pos]->is_inside == true || inside[obj_pos]->is_inside == true ){
 				posible = false;
 			}
-			else if (inside[dest_pos]->hold_capacity <= 0) {
-				printf("You cannot do that. It has reached its maximum capacity");
+			else if (inside[dest_pos]->hold_capacity == 0) {
+				printf("You cannot do that. The %s has reached its maximum capacity", inside[dest_pos]->tag.c_str());
 				posible = true;
 			}
 			else
@@ -167,12 +167,14 @@ void Player::PutGet(String action, String object, String dest) {
 }
 
 void Player::EquipUnequip(String action, String item) {
+	bool found = false;
 	for (int i = 0; i < inside.n_size(); i++) {
 		if (inside[i]->tag == item) {
 			if (action == "equip") {
 				if (inside[i]->type == ITEM && inside[i]->is_equiped == false) {
 					equiped.push_back((Item*)inside[i]);
 					inside[i]->is_equiped = true;
+					found = true;
 					printf("\nYou are now wearing a %s. It looks nice on you! :D\n(not really...)", inside[i]->tag.c_str());
 					if (inside[i]->give_hp == true && inside[i]->is_equiped == true) {
 						hp++;
@@ -186,6 +188,7 @@ void Player::EquipUnequip(String action, String item) {
 				if (inside[i]->type == ITEM && inside[i]->is_equiped == true) {
 					equiped.pop((Item*)inside[i]);
 					inside[i]->is_equiped = false;
+					found = true;
 					printf("\nYou have unequipped %s. Now you feel like being nude without it...", inside[i]->tag.c_str());
 					if (inside[i]->give_hp == true) {
 						hp--;
@@ -196,7 +199,7 @@ void Player::EquipUnequip(String action, String item) {
 					printf("\nYou are not even wearing that!");
 			}
 		}
-		else
-			printf("\nThere is no such item.");
 	}
+	if (found == false)
+		printf("\nThere is no such item.");
 }

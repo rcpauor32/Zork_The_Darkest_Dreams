@@ -41,4 +41,10 @@ Github Link --> https://github.com/rcpauor32/Zork_The_Darkest_Dreams/
 	TIP: Both items must be in your inventory to proceed.
 	TIP2: Just the 'heart' and the 'skull' can contain items (limit 1 item(s) per each)
 
+   CLEAR SCREEN -->
+	- 'clear'
+
+   QUIT THE GAME -->
+	- 'q/quit'
+
    		
