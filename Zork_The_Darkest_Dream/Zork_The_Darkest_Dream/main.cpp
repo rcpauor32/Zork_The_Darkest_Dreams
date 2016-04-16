@@ -29,8 +29,9 @@ int main() {
 	system("pause");
 	system("CLS");
 
-	world.player->Go("north");
-	world.player->Go("south");
+	printf("\n\nYou have awaken in a dark room, when you eyes start to see, you realize is an odd and old Surgery room.\nWhat are you doing here?\n\n");
+
+	world.rooms[GetRoomNum(world.player->current_room)]->Look();
 
 	while (EXIT) {
 		EXIT = world.Play();

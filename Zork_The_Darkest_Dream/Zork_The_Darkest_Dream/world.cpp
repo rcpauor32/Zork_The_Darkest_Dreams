@@ -9,46 +9,46 @@
 World::World() {
 
 	//Passing all Rooms
-	rooms.push_back(new Room("Secret Room", "room__secretdesc"));
-	rooms.push_back(new Room("Surgery Room", "room__surdesc"));
-	rooms.push_back(new Room("Upstairs Angel Room", "room__upadesc"));
-	rooms.push_back(new Room("Studio", "room__studdesc"));
-	rooms.push_back(new Room("Downstairs Angel Room", "room__dwadesc"));
-	rooms.push_back(new Room("Stone Room", "room__stonedesc"));
-	rooms.push_back(new Room("Mirror Room", "room__mirrdesc"));
-	rooms.push_back(new Room("Waiting Room", "room__waitdesc"));
-	rooms.push_back(new Room("Reception", "room__receptdesc"));
-	rooms.push_back(new Room("Library", "room__libdesc"));
-	rooms.push_back(new Room("Darkness", "room__darkdesc"));
+	rooms.push_back(new Room("Secret Room", "This is a dark room only lighted up by the fading light of your torch.\n After a moment you realize there is a man - like hooded figure standing in a corner.\n He doesn't seem to have noticed you yet.\n The only visible door is to the SOUTH.\n"));
+	rooms.push_back(new Room("Surgery Room", "This is an old surgery room from hell itself. There's a wallcrack on the NORTH wall and a door to the SOUTH"));
+	rooms.push_back(new Room("Upstairs Angel Room", "You can see a huge statue of an angel that grows from the lower floor. There's a decorated portal to the WEST, a door to the NORTH and a big STAIRWAY direction DOWN."));
+	rooms.push_back(new Room("Studio", "It's a little studio with a drawer int it. The only portal is to the EAST."));
+	rooms.push_back(new Room("Downstairs Angel Room", "The angel statue is placed on the middle of the room. There's a stone gate to the WEST, a white door to the SOUTH and a wooden door to the EAST."));
+	rooms.push_back(new Room("Stone Room", "The whole room is made of stone. There's a woman-like statue that is covering her eyes with her hands. There is a way to the SOUTH and another to the EAST."));
+	rooms.push_back(new Room("Mirror Room", "The whole room is covered in mirrors and glass. The only way out is to the NORTH."));
+	rooms.push_back(new Room("Waiting Room", "This is a big waiting room from and old hospital. There is a door to the NORTH and another to the SOUTH."));
+	rooms.push_back(new Room("Reception", "This is and old reception from a hospital, it results strangly familiar. There's a big door with a red sign that reads: 'EXIT' but it is totally jammed.\nThe only viable way is to the NORTH."));
+	rooms.push_back(new Room("Library", "This is a huge library plenty of dusty books. There is a wooden door to the WEST and a secret passage to the SOUTH."));
+	rooms.push_back(new Room("Darkness", "This 'room' if it is even that, is made of pure darkness, not even the light of your lamp can go through it. The only way (except from the infinite darkness) is a passage to the NORTH."));
 
 	//Passing all Exits
-	exits.push_back(new Exit("south", "north", "Surgery Room", "Secret Room", "Wallcrack", "exit__secretdesc", "wallcrack"));
-	exits.push_back(new Exit("south", "north", "Upstairs Angel Room", "Surgery Room", "Surgery Door", "exit__upa", "door",  false));
-	exits.push_back(new Exit("west", "east", "Studio", "Upstairs Angel Room", "Decorated Portal", "exit__1", "portal" ,  false));
-	exits.push_back(new Exit("down", "up", "Downstairs Angel Room", "Upstairs Angel Room", "Huge Stairway", "stairway", "exit__lol"));
-	exits.push_back(new Exit("west", "east", "Stone Room", "Downstairs Angel Room", "Stone Gate", "exit_jj", "gate"));
+	exits.push_back(new Exit("south", "north", "Surgery Room", "Secret Room", "Wallcrack", "A huge wallcrack on the wall. Seems that I could sneak through it.", "wallcrack"));
+	exits.push_back(new Exit("south", "north", "Upstairs Angel Room", "Surgery Room", "Surgery Door", "A big white door with the sign 'Surgery Room' on it.", "door",  false));
+	exits.push_back(new Exit("west", "east", "Studio", "Upstairs Angel Room", "Decorated Portal", "A decorated wooden door with old fashioned relief.", "portal" ,  false));
+	exits.push_back(new Exit("down", "up", "Downstairs Angel Room", "Upstairs Angel Room", "Huge Stairway", "A huge stairway that goes around the great statue of an decapitated angel.", "stairway"));
+	exits.push_back(new Exit("west", "east", "Stone Room", "Downstairs Angel Room", "Stone Gate", "A gate made of polished stone.", "gate"));
 	exits.push_back(new Exit("south", "north", "Mirror Room", "Stone Room", "Glass Door", "exit__", "door"));
-	exits.push_back(new Exit("south", "north", "Waiting Room", "Downstairs Angel Room", "White Double Door", "exit_desc4", "portal"));
-	exits.push_back(new Exit("south", "north", "Reception", "Waiting Room", "Hospital Gate", "exit__mmm", "gate"));
-	exits.push_back(new Exit("east", "west", "Library", "Downstairs Angel Room", "Wooden Door","exit__345235", "door"));
-	exits.push_back(new Exit("south", "north", "Darkness", "Library", "Dark Secret Passage", "exit_dar", "passage"));
+	exits.push_back(new Exit("south", "north", "Waiting Room", "Downstairs Angel Room", "White Double Door", "A bif double door that seems gotten from a hospital.", "portal"));
+	exits.push_back(new Exit("south", "north", "Reception", "Waiting Room", "Hospital Gate", "A strangly familiar hospital gate with the sign 'Reception' on it.", "gate"));
+	exits.push_back(new Exit("east", "west", "Library", "Downstairs Angel Room", "Wooden Door","An old wooden door I can hear something behind it.", "door"));
+	exits.push_back(new Exit("south", "north", "Darkness", "Library", "Dark Secret Passage", "A dark entrance that connects the library with pure darkness.", "passage"));
 
 	//Passing Player
 	player = new Player("Hero", "plyer_desc");
 
 	//Passing Items
-	items.push_back(new Item("Teddy Bear", "Teddy desc", "bear"));
-	items.push_back(new Item("Rusty Key", "Rusty Key desc", "key"));
-	items.push_back(new Item("Blue Marble", "BM desc", "marble"));
-	items.push_back(new Item("Red Marble", "RM desc", "marble"));
-	items.push_back(new Item("Green Marble", "GM desc", "marble"));
-	items.push_back(new Item("Stone Skull", "SS desc", "skull", 1, true));
-	items.push_back(new Item("Stone Heart", "SH desc", "heart", 1, true, false, true));
-	items.push_back(new Item("Blue Gem", "BG desc", "gem"));
-	items.push_back(new Item("Red Gem", "RG desc", "gem"));
-	items.push_back(new Item("Lamp", "Lamp desc", "lamp"));
-	items.push_back(new Item("Newspaper Sheet", "NS desc", "newspaper"));
-	items.push_back(new Item("Child Notebook", "CN desc", "notebook"));
+	items.push_back(new Item("Teddy Bear", "An old and unsew Teddy Bear, it has an eye missing.", "bear"));
+	items.push_back(new Item("Rusty Key", "An old rusty key that seems to have been trough everything.", "key"));
+	items.push_back(new Item("Blue Marble", "A blue marble.", "marble"));
+	items.push_back(new Item("Red Marble", "A red marble.", "marble"));
+	items.push_back(new Item("Green Marble", "A green marble.", "marble"));
+	items.push_back(new Item("Stone Skull", "A creepy skull made of stone, it is way to big to be from a human.", "skull", 1, true));
+	items.push_back(new Item("Stone Heart", "A heart made of stone, you feel like somthing is beating inside.", "heart", 1, true, false, true));
+	items.push_back(new Item("Blue Gem", "A blue hexagonal gem.", "gem"));
+	items.push_back(new Item("Red Gem", "A red hexagonal gem.", "gem"));
+	items.push_back(new Item("Lamp", "An old but still-working lamp.", "lamp"));
+	items.push_back(new Item("Newspaper Sheet", "a sheet from an out of date newspaper, it has some news from a car accident.", "newspaper"));
+	items.push_back(new Item("Child Notebook", "A notebook from a child. It is plenty of childish draws.", "notebook"));
 	
 	//Passing all exits to each room
 	rooms[Secret]->inside.push_back(exits[SecretRoomDoor]);
