@@ -50,11 +50,15 @@ void Player::PickDrop(String action, String item) {
 				}
 			}
 		}
-		else
+		else {
 			printf("\nYou cannot pick that, you have already reached your inventory limit.");
-
+			success = true;
+		}
 		if (success == true) {
 			printf("\nYou managed to pick that item.");
+		}
+		else {
+			printf("\nThere is no such Item in that room.");
 		}
 	}
 
@@ -71,6 +75,21 @@ void Player::PickDrop(String action, String item) {
 		if (success == true) {
 			printf("\nYou managed to drop that item.");
 		}
+		else {
+			printf("\nThere is no such Item in your inventory.");
+		}
 	}
 }
 
+void Player::LookInv() {
+	printf("\n  INVENTORY:");
+	if (inside.n_size() == 0) {
+		printf("\n You have no items in your inventory.");
+	}
+	else
+		for (int i = 0; i < inside.n_size(); i++) {
+			if (inside[i]->type == ITEM) {
+				printf("\n - %s.", inside[i]->tag.c_str());
+			}
+		}
+}

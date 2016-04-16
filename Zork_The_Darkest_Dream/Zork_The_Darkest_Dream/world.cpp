@@ -27,7 +27,7 @@ World::World() {
 	exits.push_back(new Exit("west", "east", "Studio", "Upstairs Angel Room", "Decorated Portal", "exit__1", "portal" ,  false));
 	exits.push_back(new Exit("down", "up", "Downstairs Angel Room", "Upstairs Angel Room", "Huge Stairway", "stairway", "exit__lol"));
 	exits.push_back(new Exit("west", "east", "Stone Room", "Downstairs Angel Room", "Stone Gate", "exit_jj", "gate"));
-	exits.push_back(new Exit("south", "north", "Stone Room", "Mirror Room", "Glass Door", "exit__", "door"));
+	exits.push_back(new Exit("south", "north", "Mirror Room", "Stone Room", "Glass Door", "exit__", "door"));
 	exits.push_back(new Exit("south", "north", "Waiting Room", "Downstairs Angel Room", "White Double Door", "exit_desc4", "portal"));
 	exits.push_back(new Exit("south", "north", "Reception", "Waiting Room", "Hospital Gate", "exit__mmm", "gate"));
 	exits.push_back(new Exit("east", "west", "Library", "Downstairs Angel Room", "Wooden Door","exit__345235", "door"));
@@ -169,6 +169,9 @@ bool World::Play() {
 			system("CLS");
 			rooms[GetRoomNum(player->current_room)]->Look();
 		}
+		else if (input == "inventory\n" || input == "inv\n" || input == "i\n") {
+			player->LookInv();
+		}
 		else
 			recognized = false;
 		break;
@@ -226,6 +229,12 @@ bool World::Play() {
 				for (int i = 0; i < rooms[GetRoomNum(player->current_room)]->inside.n_size(); i++) {
 				if (input.GetChoosenArg(2) == rooms[GetRoomNum(player->current_room)]->inside[i]->tag) {
 					rooms[GetRoomNum(player->current_room)]->inside[i]->Look();
+					looked = true;
+				}
+			}
+			for (int i = 0; i < player->inside.n_size(); i++) {
+				if (input.GetChoosenArg(2) == player->inside[i]->tag) {
+					player->inside[i]->Look();
 					looked = true;
 				}
 			}

@@ -27,6 +27,7 @@ public:
 
 	void Go(String dir);
 	void PickDrop(String action, String item);
+	void LookInv();
 
 };
 
