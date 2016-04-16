@@ -41,8 +41,8 @@ World::World() {
 	items.push_back(new Item("Blue Marble", "BM desc", "marble"));
 	items.push_back(new Item("Red Marble", "RM desc", "marble"));
 	items.push_back(new Item("Green Marble", "GM desc", "marble"));
-	items.push_back(new Item("Stone Skull", "SS desc", "skull"));
-	items.push_back(new Item("Stone Heart", "SH desc", "heart"));
+	items.push_back(new Item("Stone Skull", "SS desc", "skull", 1, true));
+	items.push_back(new Item("Stone Heart", "SH desc", "heart", 1, true));
 	items.push_back(new Item("Blue Gem", "BG desc", "gem"));
 	items.push_back(new Item("Red Gem", "RG desc", "gem"));
 	items.push_back(new Item("Lamp", "Lamp desc", "lamp"));
@@ -285,6 +285,15 @@ bool World::Play() {
 		else
 			recognized = false;
 		break;
+
+		case 3:
+			break;
+		case 4: 
+			if (input.GetChoosenArg(1) == "put" && input.GetChoosenArg(3) == "into" || input.GetChoosenArg(1) == "get" && input.GetChoosenArg(3) == "from") {
+				player->PutGet(input.GetChoosenArg(1), input.GetChoosenArg(2), input.GetChoosenArg(4));
+			}
+			else
+				recognized = false;
 	}
 	
 	if (recognized == false) {

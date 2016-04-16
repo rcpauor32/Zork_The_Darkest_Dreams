@@ -21,6 +21,7 @@ public:
 		current_room = room;
 		type = PLAYER;
 		inventory_limit = 5;
+		can_hold = true;
 	}
 
 	~Player(){}
@@ -28,6 +29,7 @@ public:
 	void Go(String dir);
 	void PickDrop(String action, String item);
 	void LookInv();
+	void PutGet(String action, String object, String Dest);
 
 };
 

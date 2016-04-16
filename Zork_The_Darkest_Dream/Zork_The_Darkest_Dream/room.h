@@ -12,6 +12,7 @@ public:
 		name = title;
 		description = desc;
 		type = ROOM;
+		can_hold = true;
 	}
 
 	~Room(){}

@@ -26,6 +26,7 @@ public:
 		open = state;
 		tag = t;
 		type = EXIT;
+		can_hold = false;
 	}
 
 	~Exit(){};

@@ -19,6 +19,10 @@ public:
 	String tag;
 	entity_type type;
 	DynArray <Entity*>inside;
+	bool can_hold;
+	bool is_inside;
+	String container_name;
+	uint hold_capacity;
 
 public:
 	Entity(){};
