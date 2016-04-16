@@ -22,6 +22,7 @@ public:
 	bool can_hold;
 	bool is_inside;
 	bool is_equiped;
+	bool give_hp;
 	String container_name;
 	uint hold_capacity;
 

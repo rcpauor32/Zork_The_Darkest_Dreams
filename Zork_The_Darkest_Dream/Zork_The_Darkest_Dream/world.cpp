@@ -36,13 +36,14 @@ World::World() {
 	//Passing Player
 	player = new Player("Hero", "plyer_desc");
 
+	//Passing Items
 	items.push_back(new Item("Teddy Bear", "Teddy desc", "bear"));
 	items.push_back(new Item("Rusty Key", "Rusty Key desc", "key"));
 	items.push_back(new Item("Blue Marble", "BM desc", "marble"));
 	items.push_back(new Item("Red Marble", "RM desc", "marble"));
 	items.push_back(new Item("Green Marble", "GM desc", "marble"));
 	items.push_back(new Item("Stone Skull", "SS desc", "skull", 1, true));
-	items.push_back(new Item("Stone Heart", "SH desc", "heart", 1, true));
+	items.push_back(new Item("Stone Heart", "SH desc", "heart", 1, true, false, true));
 	items.push_back(new Item("Blue Gem", "BG desc", "gem"));
 	items.push_back(new Item("Red Gem", "RG desc", "gem"));
 	items.push_back(new Item("Lamp", "Lamp desc", "lamp"));
@@ -171,6 +172,9 @@ bool World::Play() {
 		}
 		else if (input == "inventory\n" || input == "inv\n" || input == "i\n") {
 			player->LookInv();
+		}
+		else if (input == "stats\n") {
+			printf("\nSTATS:\n Hit Points: %d\n --- end of stats ---\n (did you expect anything else?)", player->hp);
 		}
 		else
 			recognized = false;

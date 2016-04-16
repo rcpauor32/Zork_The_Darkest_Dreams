@@ -9,12 +9,14 @@ public:
 	String current_room;
 	DynArray<Item*>equiped;
 	int inventory_limit;
+	uint hp;
 	
 public:
 	Player() {
 		current_room = "Surgery";
 		type = PLAYER;
 		inventory_limit = 5;
+		hp = 1;
 	}
 	Player(String n, String desc, String room = "Surgery Room") {
 		name = n;
@@ -23,6 +25,7 @@ public:
 		type = PLAYER;
 		inventory_limit = 5;
 		can_hold = true;
+		hp = 1;
 	}
 
 	~Player(){}

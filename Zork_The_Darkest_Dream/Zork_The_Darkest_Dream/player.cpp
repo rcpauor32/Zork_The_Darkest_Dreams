@@ -174,6 +174,10 @@ void Player::EquipUnequip(String action, String item) {
 					equiped.push_back((Item*)inside[i]);
 					inside[i]->is_equiped = true;
 					printf("\nYou are now wearing a %s. It looks nice on you! :D\n(not really...)", inside[i]->tag.c_str());
+					if (inside[i]->give_hp == true && inside[i]->is_equiped == true) {
+						hp++;
+						printf("\nYou Just Augmented your health!!!\n(Actually, health is useless)");
+					}
 				}
 				else
 					printf("You are already wearing that!");
@@ -183,6 +187,10 @@ void Player::EquipUnequip(String action, String item) {
 					equiped.pop((Item*)inside[i]);
 					inside[i]->is_equiped = false;
 					printf("\nYou have unequipped %s. Now you feel like being nude without it...", inside[i]->tag.c_str());
+					if (inside[i]->give_hp == true) {
+						hp--;
+						printf("\nYou just lost 1 max hp D:");
+					}
 				}
 				else
 					printf("\nYou are not even wearing that!");
