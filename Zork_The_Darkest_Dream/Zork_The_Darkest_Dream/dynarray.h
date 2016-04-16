@@ -100,6 +100,28 @@ public:
 		buffer = newbuffer;
 	}
 
+	void pop(T object) {
+		int remove_pos = 0;
+		while (remove_pos < num_elements && buffer[remove_pos] != object) {
+			remove_pos++;
+		}
+		
+		T* newbuffer = new T[capacity - 1];
+		bool removed = false;
+		for (int i = 0; i < num_elements - 1; i++) {
+			if (i == remove_pos && !removed) {
+				i--;
+				removed = true;
+			}
+			else 
+			newbuffer[i] = buffer[i];
+		}
+
+		capacity--;
+		num_elements--;
+		buffer = newbuffer;
+	}
+
 	uint n_size() const {
 		return num_elements;
 	}

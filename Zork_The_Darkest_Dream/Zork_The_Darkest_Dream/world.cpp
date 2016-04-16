@@ -270,6 +270,9 @@ bool World::Play() {
 				}
 			}
 		}
+		else if (input.GetChoosenArg(1) == "pick" || input.GetChoosenArg(1) == "drop") {
+			player->PickDrop(input.GetChoosenArg(1), input.GetChoosenArg(2));
+		}
 		else
 			recognized = false;
 		break;

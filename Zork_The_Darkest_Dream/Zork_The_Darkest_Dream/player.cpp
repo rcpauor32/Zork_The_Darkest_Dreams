@@ -35,3 +35,42 @@ void Player::Go(String dir) {
 
 }
 
+void Player::PickDrop(String action, String item) {
+	bool success = false;
+	
+	if (action == "pick") {
+		if (inventory_limit > 0) {
+			for (int i = 0; i < world.rooms[GetRoomNum(current_room)]->inside.n_size(); i++) {
+				if (item == world.rooms[GetRoomNum(current_room)]->inside[i]->tag) {
+					this->inside.push_back(world.rooms[GetRoomNum(current_room)]->inside[i]);
+					world.rooms[GetRoomNum(current_room)]->inside.pop(world.rooms[GetRoomNum(current_room)]->inside[i]);
+					success = true;
+					inventory_limit--;
+					break;
+				}
+			}
+		}
+		else
+			printf("\nYou cannot pick that, you have already reached your inventory limit.");
+
+		if (success == true) {
+			printf("\nYou managed to pick that item.");
+		}
+	}
+
+	else if (action == "drop") {
+		for (int i = 0; i < this->inside.n_size(); i++) {
+			if (item == this->inside[i]->tag) {
+				world.rooms[GetRoomNum(current_room)]->inside.push_back(this->inside[i]);
+				this->inside.pop(this->inside[i]);
+				success = true;
+				inventory_limit++;
+				break;
+			}
+		}
+		if (success == true) {
+			printf("\nYou managed to drop that item.");
+		}
+	}
+}
+
