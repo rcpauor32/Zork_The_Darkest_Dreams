@@ -7,6 +7,7 @@
 class Player : public Entity {
 public:
 	String current_room;
+	DynArray<Item*>equiped;
 	int inventory_limit;
 	
 public:
@@ -30,6 +31,7 @@ public:
 	void PickDrop(String action, String item);
 	void LookInv();
 	void PutGet(String action, String object, String Dest);
+	void EquipUnequip(String action, String item);
 
 };
 

@@ -93,6 +93,9 @@ void Player::LookInv() {
 				if (inside[i]->is_inside == true) {
 					printf(" (inside %s)", inside[i]->container_name.c_str());
 				}
+				else if (inside[i]->is_equiped == true) {
+					printf(" *equiped*");
+				}
 			}
 		}
 }
@@ -160,5 +163,32 @@ void Player::PutGet(String action, String object, String dest) {
 
 	if (posible == false) {
 		printf("\nYou cannot do that!");
+	}
+}
+
+void Player::EquipUnequip(String action, String item) {
+	for (int i = 0; i < inside.n_size(); i++) {
+		if (inside[i]->tag == item) {
+			if (action == "equip") {
+				if (inside[i]->type == ITEM && inside[i]->is_equiped == false) {
+					equiped.push_back((Item*)inside[i]);
+					inside[i]->is_equiped = true;
+					printf("\nYou are now wearing a %s. It looks nice on you! :D\n(not really...)", inside[i]->tag.c_str());
+				}
+				else
+					printf("You are already wearing that!");
+			}
+			else if (action == "unequip") {
+				if (inside[i]->type == ITEM && inside[i]->is_equiped == true) {
+					equiped.pop((Item*)inside[i]);
+					inside[i]->is_equiped = false;
+					printf("\nYou have unequipped %s. Now you feel like being nude without it...", inside[i]->tag.c_str());
+				}
+				else
+					printf("\nYou are not even wearing that!");
+			}
+		}
+		else
+			printf("\nThere is no such item.");
 	}
 }

@@ -21,6 +21,7 @@ public:
 	DynArray <Entity*>inside;
 	bool can_hold;
 	bool is_inside;
+	bool is_equiped;
 	String container_name;
 	uint hold_capacity;
 

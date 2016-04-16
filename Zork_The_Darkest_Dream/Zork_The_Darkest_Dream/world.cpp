@@ -282,6 +282,9 @@ bool World::Play() {
 		else if (input.GetChoosenArg(1) == "pick" || input.GetChoosenArg(1) == "drop") {
 			player->PickDrop(input.GetChoosenArg(1), input.GetChoosenArg(2));
 		}
+		else if (input.GetChoosenArg(1) == "equip" || input.GetChoosenArg(1) == "unequip") {
+			player->EquipUnequip(input.GetChoosenArg(1), input.GetChoosenArg(2));
+		}
 		else
 			recognized = false;
 		break;
@@ -289,7 +292,7 @@ bool World::Play() {
 		case 3:
 			break;
 		case 4: 
-			if (input.GetChoosenArg(1) == "put" && input.GetChoosenArg(3) == "into" || input.GetChoosenArg(1) == "get" && input.GetChoosenArg(3) == "from") {
+			if (input.GetChoosenArg(1) == "put" && input.GetChoosenArg(3) == "in" || input.GetChoosenArg(1) == "get" && input.GetChoosenArg(3) == "from") {
 				player->PutGet(input.GetChoosenArg(1), input.GetChoosenArg(2), input.GetChoosenArg(4));
 			}
 			else
