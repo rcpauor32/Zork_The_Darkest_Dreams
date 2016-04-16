@@ -38,7 +38,7 @@ World::World() {
 
 	//Passing Items
 	items.push_back(new Item("Teddy Bear", "An old and unsew Teddy Bear, it has an eye missing.", "bear"));
-	items.push_back(new Item("Rusty Key", "An old rusty key that seems to have been trough everything.", "key"));
+	items.push_back(new Item("Rusty Key", "An old rusty key that seems to have been trough a lot of things.", "key"));
 	items.push_back(new Item("Blue Marble", "A blue marble.", "marble"));
 	items.push_back(new Item("Red Marble", "A red marble.", "marble"));
 	items.push_back(new Item("Green Marble", "A green marble.", "marble"));
